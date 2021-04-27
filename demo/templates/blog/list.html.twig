@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Listes des utilisateurs enregistrés</h1>
+<fieldset>
+    <legend>Choisissez l'utilisateur à visualiser :</legend>
+    <form action="list.html.twig"  method="post">
+        <select name="fruit" multiple style="width:1000px;">
+            {% for users in users %}
+                <div>
+                    <option value="Nom d'utilisateur">{{users.username}}............{{users.email}}</option>
+                </div>
+            {% endfor %}
+        </select> 
+        <p><input type="submit" name="valider" value="Valider"></p>
+    </form>
+</fieldset>
+<fieldset>
+    <legend>Liste des utilisateurs enregistrés</legend>
+        <div class="form-group">
+            <label for="exampleSelect2">Choisissez l'utilisateur :</label>
+            <select class="form-control" id="exampleSelect2">
+                {% for users in users %}
+                    <div>
+                        <option value="Nom d'utilisateur">{{users.username}}............{{users.email}}</option>
+                    </div>
+                {% endfor %}
+            </select>
+            <p><input type="submit" name="valider" value="Valider"></p>
+        </div>
+    </fieldset>
+
+{% endblock %}

@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(
- *  fields={"email"}, message="Cet email est déjà pris, veuillez en choisir un autre."
+ *  fields={"email", "username"}, message="Cet email et/ou ce nom d'utilisateur est déjà pris, veuillez en choisir un autre."
  * )
  */
 class User implements UserInterface
@@ -47,7 +47,9 @@ class User implements UserInterface
      */
     public $confirm_password;
 
-    public function getId(): ?int
+
+        
+    public function getId(): ?int    
     {
         return $this->id;
     }
@@ -102,4 +104,5 @@ class User implements UserInterface
     {
         return['ROLE_USER'];
     }
+
 }

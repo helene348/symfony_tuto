@@ -6,12 +6,14 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,6 +23,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Security\Core\User\User as UserUser;
 
 class BlogController extends AbstractController
 {
@@ -119,5 +124,14 @@ class BlogController extends AbstractController
         ]);
     }
     
+    /**
+     * @Route("/list", name="user_list")
+     */
+    public function list(UserRepository $repo): Response {
+        $users = $repo->findAll();
+        return $this->render('blog/list.html.twig',[
+            'users' => $users
+        ]);
+    }
 
 }
