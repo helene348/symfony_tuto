@@ -56,6 +56,7 @@ class BlogController extends AbstractController
      */
     public function form(Article $article = null, Request $request, EntityManagerInterface $manager){
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if(!$article){
             $article = new Article();
         }
@@ -128,6 +129,8 @@ class BlogController extends AbstractController
      * @Route("/list", name="user_list")
      */
     public function list(UserRepository $repo): Response {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $users = $repo->findAll();
         return $this->render('blog/list.html.twig',[
             'users' => $users

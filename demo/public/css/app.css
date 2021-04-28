@@ -1,0 +1,11 @@
+.logo{
+	border: 1px solid #ddd;
+	border-radius: 50%;
+	width: 100px;
+	max-width: 100%;
+	height: auto;
+}
+.navbar-brand{
+	padding-left: 200px;
+
+}
